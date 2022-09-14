@@ -1,0 +1,12 @@
+FROM ubuntu:18.04
+EXPOSE 9080
+RUN apt-get update
+RUN apt-get install -y git
+RUN git clone https://github.com/danisanz22/practica.git
+RUN apt-get install -y python3-pip
+RUN pip3 install -r practica/bookinfo/src/productpage/requirements.txt
+CMD ["python3","practica/bookinfo/src/productpage/productpage_monolith.py","9080"]
+
+
+
+

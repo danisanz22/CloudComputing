@@ -1,0 +1,36 @@
+version: '3'
+services:
+ productpage:
+  container_name: '22-productpage'
+  build: 
+   context: .
+   dockerfile: productpage_dockerfile
+  image: 22/productpage
+  ports:
+   - '9080:9080'
+ details:
+  container_name: '22-details'
+  build: 
+   context: .
+   dockerfile: details_dockerfile              
+  image: 22/details
+  ports:
+   - '9080'
+ reviews:
+  container_name: '22-reviews'
+  build: practica_creativa2/bookinfo/src/reviews/reviews-wlpcfg
+  image: 22/reviews
+  ports:
+   - '9080'
+  links:
+   - ratings
+  environment:
+   - ENABLE_RATINGS=true
+ ratings:
+  container_name: '22-ratings'
+  build: 
+   context: .
+   dockerfile: ratings_dockerfile
+  image: 22/ratings
+  ports:
+   - '9080'
